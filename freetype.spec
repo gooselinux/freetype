@@ -9,7 +9,7 @@
 Summary: A free and portable font rendering engine
 Name: freetype
 Version: 2.3.11
-Release: 5%{?dist}
+Release: 6%{?dist}.1
 License: FTL or GPLv2+
 Group: System Environment/Libraries
 URL: http://www.freetype.org
@@ -38,6 +38,10 @@ Patch93:  freetype-2.3.11-CVE-2010-2520.patch
 Patch94:  freetype-2.3.11-CVE-2010-2527.patch
 Patch95:  freetype-2.3.11-axis-name-overflow.patch
 Patch96:  freetype-2.3.11-CVE-2010-1797.patch
+Patch97:  freetype-2.3.11-CVE-2010-2805.patch
+Patch98:  freetype-2.3.11-CVE-2010-2806.patch
+Patch99:  freetype-2.3.11-CVE-2010-2808.patch
+Patch100:  freetype-2.3.11-CVE-2010-3311.patch
 
 Buildroot: %{_tmppath}/%{name}-%{version}-root-%(%{__id_u} -n)
 
@@ -114,6 +118,10 @@ popd
 %patch94 -p1 -b .CVE-2010-2527
 %patch95 -p1 -b .axis-name-overflow
 %patch96 -p1 -b .CVE-2010-1797
+%patch97 -p1 -b .CVE-2010-2805
+%patch98 -p1 -b .CVE-2010-2806
+%patch99 -p1 -b .CVE-2010-2808
+%patch100 -p1 -b .CVE-2010-3311
 
 %build
 
@@ -243,6 +251,16 @@ rm -rf $RPM_BUILD_ROOT
 %doc docs/tutorial
 
 %changelog
+* Thu Sep 30 2010 Marek Kasik <mkasik@redhat.com> 2.3.11-6.el6_0.1
+- Add freetype-2.3.11-CVE-2010-2805.patch
+    (Fix comparison.)
+- Add freetype-2.3.11-CVE-2010-2806.patch
+    (Protect against negative string_size. Fix comparison.)
+- Add freetype-2.3.11-CVE-2010-2808.patch
+    (Check the total length of collected POST segments.)
+- Add freetype-2.3.11-CVE-2010-3311.patch
+    (Don't seek behind end of stream.)
+- Resolves: #638838
 
 * Wed Aug 11 2010 Marek Kasik <mkasik@redhat.com> 2.3.11-5
 - Add freetype-2.3.11-CVE-2010-1797.patch
